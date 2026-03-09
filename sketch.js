@@ -130,7 +130,9 @@ function mousePressed() {
 
     // if electron is active, check atom button clicks first
     if (vis.selectedVisual && vis.selectedVisual.name == "electron") {
+        if (controls.playbackButton.hitCheck()) return;
         vis.selectedVisual.mousePressed();
+        return; // ignore everything else
     }
 
     // ignore play/pause button normally

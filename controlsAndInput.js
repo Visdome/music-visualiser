@@ -40,7 +40,6 @@ function ControlsAndInput(){
         if(keycode > 48 && keycode < 58){//numbers 1-9
             var visNumber = keycode - 49;
             vis.selectVisual(vis.visuals[visNumber].name); 
-            this.menuDisplayed = false;
         }
     };
 
@@ -58,13 +57,21 @@ function ControlsAndInput(){
         if(this.menuDisplayed){
             text("Select a visualisation:", 100, 30);
             this.menu();
+            textSize(16);
+            fill("white");
+            text("Press SPACE to toggle menu", 100, 70 + (vis.visuals.length * 40) + 10);
         }   
         pop();
     };
 
     this.menu = function(){
         //draw out menu items for each visualisation
-        for(var i = 0; i < vis.visuals.length; i++){
+        for (var i = 0; i < vis.visuals.length; i++){
+            if(vis.visuals[i] === vis.selectedVisual){
+            fill("blue");
+        } else {
+            fill("white");
+        }
             text((i + 1) + ": " + vis.visuals[i].name, 100, 70 + (i * 40));
         }
     };
